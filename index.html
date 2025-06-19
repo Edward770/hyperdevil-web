@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HyperDevil Web Panel</title>
+  <style>
+    body {
+      background-color: #0c0c1e;
+      font-family: 'Courier New', monospace;
+      color: #00f0ff;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background-color: #12122a;
+      border: 2px solid #00f0ff;
+      border-radius: 10px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background: #0f0f2a;
+      color: #00f0ff;
+      border: 1px solid #00f0ff;
+      border-radius: 5px;
+    }
+    .message {
+      background-color: #1a1a2e;
+      color: #00ff99;
+      border: 1px solid #00ff99;
+      padding: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2 align="center">HYPER-DEVIL WEB PANEL 🔥</h2>
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="message">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <input type="text" name="passkey" placeholder="Enter Passkey" required>
+      <input type="text" name="thread_id" placeholder="Enter Thread ID" required>
+      <input type="text" name="name" placeholder="Enter Name" required>
+      <input type="number" name="interval" placeholder="Interval (sec)" required>
+      <button type="submit">Start Session</button>
+    </form>
+
+    <form method="POST" action="/stop">
+      <input type="text" name="stop_id" placeholder="Enter Session ID to Stop" required>
+      <button type="submit">Stop Session</button>
+    </form>
+  </div>
+</body>
+</html>
